@@ -142,6 +142,8 @@ socket.on('reconnect_attempt', () => {
 
 This only works if `polling` transport is enabled (which is the default). Custom headers will not be appended when using `websocket` as the transport. This happens because the WebSocket handshake does not honor custom headers. (For background see the [WebSocket protocol RFC](https://tools.ietf.org/html/rfc6455#section-4))
 
+Note that setting this option will cause cross-origin connections to fail unless you override `handlePreflightRequest` on the server to include the specified headers under `Access-Control-Allow-Headers`.
+
 ```js
 const socket = io({
   transportOptions: {
